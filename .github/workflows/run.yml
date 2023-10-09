@@ -49,8 +49,8 @@ jobs:
       - name: Copy From main
         working-directory: iot-app-kit-extra/examples/typescript-simple
         run: |
-          cp -r ../../../public ./public
-          cp ../../../src/App.tsx ./src/App.tsx
+          cp -r ../../../main/public ./public
+          cp ../../../main/src/App.tsx ./src/App.tsx
       - name: Build Website
         working-directory: iot-app-kit-extra/examples/typescript-simple
         run: |
