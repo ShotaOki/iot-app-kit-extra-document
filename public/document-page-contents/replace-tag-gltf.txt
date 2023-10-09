@@ -1,0 +1,4 @@
+${0}.toGLTF?.create({
+  angle: 0,
+  modelPath: "/example/studio_apartment_vray_baked_textures_included.glb",
+});

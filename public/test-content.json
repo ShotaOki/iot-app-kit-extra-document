@@ -1,0 +1,101 @@
+{
+  "specVersion": "1.0",
+  "version": "1",
+  "unit": "meters",
+  "properties": { "environmentPreset": "neutral" },
+  "nodes": [
+    {
+      "name": "Camera1",
+      "transform": {
+        "position": [
+          0.41283826301894766, 1.620002632485634, 3.0935689365388823
+        ],
+        "rotation": [
+          -0.279003583680107, 0.1736712319410043, 0.04946250599490822
+        ],
+        "scale": [1, 1, 1]
+      },
+      "transformConstraint": {},
+      "components": [{ "type": "Camera", "cameraIndex": 0 }],
+      "properties": {}
+    },
+    {
+      "name": "Target",
+      "transform": {
+        "position": [
+          -0.1978972242826915, 0.058931351269206, -0.269388714430837
+        ],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "transformConstraint": {},
+      "components": [{ "type": "Tag", "valueDataBinding": {} }],
+      "properties": {}
+    }
+  ],
+  "rootNodeIndexes": [0, 1],
+  "cameras": [
+    {
+      "fov": 53.13,
+      "near": 0.1,
+      "far": 1000,
+      "zoom": 1,
+      "cameraType": "Perspective"
+    }
+  ],
+  "rules": {
+    "sampleAlarmIconRule": {
+      "statements": [
+        {
+          "expression": "alarm_status == 'ACTIVE'",
+          "target": "iottwinmaker.common.icon:Error"
+        },
+        {
+          "expression": "alarm_status == 'ACKNOWLEDGED'",
+          "target": "iottwinmaker.common.icon:Warning"
+        },
+        {
+          "expression": "alarm_status == 'SNOOZE_DISABLED'",
+          "target": "iottwinmaker.common.icon:Warning"
+        },
+        {
+          "expression": "alarm_status == 'NORMAL'",
+          "target": "iottwinmaker.common.icon:Info"
+        }
+      ]
+    },
+    "sampleTimeSeriesIconRule": {
+      "statements": [
+        {
+          "expression": "temperature >= 40",
+          "target": "iottwinmaker.common.icon:Error"
+        },
+        {
+          "expression": "temperature >= 20",
+          "target": "iottwinmaker.common.icon:Warning"
+        },
+        {
+          "expression": "temperature < 20",
+          "target": "iottwinmaker.common.icon:Info"
+        }
+      ]
+    },
+    "sampleTimeSeriesColorRule": {
+      "statements": [
+        {
+          "expression": "temperature >= 40",
+          "target": "iottwinmaker.common.color:#FF0000"
+        },
+        {
+          "expression": "temperature >= 20",
+          "target": "iottwinmaker.common.color:#FFFF00"
+        },
+        {
+          "expression": "temperature < 20",
+          "target": "iottwinmaker.common.color:#00FF00"
+        }
+      ]
+    }
+  },
+  "defaultCameraIndex": 0
+}
