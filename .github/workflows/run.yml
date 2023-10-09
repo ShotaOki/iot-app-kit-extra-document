@@ -1,5 +1,9 @@
 name: create-deployments
-on: [workflow_dispatch]
+on:
+  push:
+    branches: ["main"]
+
+  workflow_dispatch:
 permissions:
   contents: write
   pages: write
