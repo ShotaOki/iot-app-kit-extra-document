@@ -13,7 +13,9 @@ import { useEffect, useState } from "react";
  * @returns
  */
 function DynamicContents(parameter: { content: string }) {
-  const sceneLoader = new DirectSceneLoader("/test-content.json");
+  const sceneLoader = new DirectSceneLoader(
+    "/iot-app-kit-extra-document/test-content.json"
+  );
 
   // 変数（Targetを置き換える関数）を宣言する
   let fc = (_: any): any => {
