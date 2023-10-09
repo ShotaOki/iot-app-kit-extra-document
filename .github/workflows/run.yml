@@ -36,11 +36,6 @@ jobs:
         run: |
           npm install --legacy-peer-deps
           npm run build:wsl
-      - name: Build modules
-        working-directory: iot-app-kit-extra/src/scene_composer_extra
-        run: |
-          npm install --legacy-peer-deps
-          npm run build:wsl
       - name: Dependency to current repository
         working-directory: iot-app-kit-extra/examples/typescript-simple
         run: |

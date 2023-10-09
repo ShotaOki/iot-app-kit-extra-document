@@ -54,7 +54,9 @@ function App() {
       return;
     }
     // 参照先のドメインと拡張子は固定する
-    fetch("/document-page-contents/" + parameter + ".txt").then((response) => {
+    fetch(
+      "/iot-app-kit-extra-document/document-page-contents/" + parameter + ".txt"
+    ).then((response) => {
       response.text().then((content) => {
         if (content.includes("${0}")) {
           SetReplaceView(<DynamicContents content={content} />);
