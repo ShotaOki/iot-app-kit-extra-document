@@ -46,9 +46,17 @@ jobs:
         run: |
           sed -i 's/"@iak-extra\/scene-composer-extra.*$/"@iak-extra\/scene-composer-extra": "file:..\/..\/package\/scene_composer_extra",/g' package.json
           npm install --legacy-peer-deps
+      - name: Copy From main
+        working-directory: iot-app-kit-extra/examples/typescript-simple
+        run: |
+          cp -r ../../../public ./public
+          cp ../../../src/App.tsx ./src/App.tsx
+      - name: Build Website
+        working-directory: iot-app-kit-extra/examples/typescript-simple
+        run: |
           npm run build
         env:
-          PUBLIC_URL: /Example_App
+          PUBLIC_URL: /iot-app-kit-extra-document
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
