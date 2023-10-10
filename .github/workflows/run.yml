@@ -47,6 +47,12 @@ jobs:
           cp -r ../../../main/public/document-page-contents ./public/document-page-contents
           cp ../../../main/public/test-content.json ./public/test-content.json
           cp ../../../main/src/App.tsx ./src/App.tsx
+      - name: Copy from URL
+        working-directory: iot-app-kit-extra/examples/typescript-simple/public
+        run: |
+          curl https://pub-5015c5eb71ab421cbc461442eab0dd68.r2.dev/resource.tar.gz -o resource.tar.gz
+          tar -zxvf resource.tar.gz
+          rm resource.tar.gz
       - name: Build Website
         working-directory: iot-app-kit-extra/examples/typescript-simple
         run: |
