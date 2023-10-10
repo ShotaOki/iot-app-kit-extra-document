@@ -1,17 +1,8 @@
 /* eslint-disable no-template-curly-in-string */
 import "./App.css";
 import { SceneViewer } from "@iot-app-kit/scene-composer";
-import {
-  useOverrideTags,
-  DirectSceneLoader,
-  ButtonStyle,
-} from "@iak-extra/scene-composer-extra";
+import * as extra from "@iak-extra/scene-composer-extra";
 import { useEffect, useState } from "react";
-
-/** 未使用変数を参照 */
-export function unused() {
-  console.log(ButtonStyle);
-}
 
 /**
  * コンテンツを遅延表示する
@@ -19,7 +10,7 @@ export function unused() {
  * @returns
  */
 function DynamicContents(parameter: { content: string }) {
-  const sceneLoader = new DirectSceneLoader(
+  const sceneLoader = new extra.DirectSceneLoader(
     "/iot-app-kit-extra-document/test-content.json"
   );
 
@@ -37,7 +28,7 @@ function DynamicContents(parameter: { content: string }) {
 
   /** TwinMakerのタグを、再定義した関数で上書きする */
   // eslint-disable-next-line no-eval
-  const controller = useOverrideTags({
+  const controller = extra.useOverrideTags({
     Target: (replaceTag: any) => fc(replaceTag),
   });
 

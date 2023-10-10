@@ -6,7 +6,7 @@ ${0}.withSwitchGroup({
         content: "Click",
         width: 0.7,
         height: 0.24,
-        stateStyle: ButtonStyle.Standard,
+        stateStyle: extra.ButtonStyle.Standard,
     },
     contents: (replace) =>
         replace.toBarChart?.create({
