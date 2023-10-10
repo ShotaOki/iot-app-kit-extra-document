@@ -8,6 +8,11 @@ import {
 } from "@iak-extra/scene-composer-extra";
 import { useEffect, useState } from "react";
 
+/** 未使用変数を参照 */
+export function unused() {
+  console.log(ButtonStyle);
+}
+
 /**
  * コンテンツを遅延表示する
  * @param parameter
