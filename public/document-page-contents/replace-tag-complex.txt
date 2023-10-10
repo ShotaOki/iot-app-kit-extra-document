@@ -1,0 +1,16 @@
+${0}.withSwitchGroup({
+    group: {
+        angle: 0,
+    },
+    button: {
+        content: "Click",
+        width: 0.7,
+        height: 0.24,
+        stateStyle: ButtonStyle.Standard,
+    },
+    contents: (replace) =>
+        replace.toBarChart?.create({
+            scale: 0.003,
+            data: [2300, 3100, 2200, 1100],
+        }),
+});

@@ -1,0 +1,11 @@
+${0}.toMMD?.create({
+    angle: 0,
+    scale: 0.08,
+    pmxPath: "/iot-app-kit-extra-document/example/miku_v2.pmd",
+    useMotionList: {
+        dance: "/iot-app-kit-extra-document/example/wavefile_v2.vmd",
+    },
+})
+.onStateChangeEvent((mesh, model, state) => {
+    return ["dance"];
+});

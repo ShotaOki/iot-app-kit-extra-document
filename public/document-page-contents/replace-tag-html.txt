@@ -1,0 +1,38 @@
+${0}.toHTML?.create({
+    scale: 0.01,
+    angle: 0,
+    element: (
+        <div style={{ backgroundColor: "white" }}>
+            <table>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>UserA</td>
+                    <td>Train</td>
+                    <td>2009</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>UserB</td>
+                    <td>Car</td>
+                    <td>2012</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>UserC</td>
+                    <td>Bike</td>
+                    <td>2010</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    ),
+});

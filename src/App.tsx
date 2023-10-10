@@ -4,6 +4,7 @@ import { SceneViewer } from "@iot-app-kit/scene-composer";
 import {
   useOverrideTags,
   DirectSceneLoader,
+  ButtonStyle,
 } from "@iak-extra/scene-composer-extra";
 import { useEffect, useState } from "react";
 

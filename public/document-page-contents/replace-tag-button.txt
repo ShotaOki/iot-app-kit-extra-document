@@ -1,0 +1,9 @@
+${0}.toButton?.create({
+    angle: 0,
+    content: "Close",
+    width: 0.7,
+    height: 0.24,
+    stateStyle: ButtonStyle.Standard,
+})
+.onClickEvent(() => {
+});

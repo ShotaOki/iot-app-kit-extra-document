@@ -1,0 +1,19 @@
+${0}.toTextureAtrasVideo?.create({
+    width: 1.2,
+    height: (1.2 * 135.0) / 240.0,
+    angle: 0,
+    fps: 20,
+    imagePath: "/iot-app-kit-extra-document/atras-movie.png",
+    atras: new Array(90).fill(0).map((_, i) => {
+        const h = 1.0 / 10.0;
+        const w = 1.0 / 9.0;
+        const y = i % 10;
+        const x = Math.floor(i / 10);
+        return {
+            x: w * (8 - x),
+            y: h * y,
+            w,
+            h,
+        };
+    }),
+});

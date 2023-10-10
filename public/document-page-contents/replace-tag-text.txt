@@ -1,0 +1,11 @@
+${0}.toText?.create({
+    angle: 0,
+    content: "Time",
+})
+.onAnimating((text) => {
+    (text as any).set({
+        content: new Date(new Date().getTime() + 9 * 60 * 60 * 1000)
+            .toISOString()
+            .split(".")[0],
+    });
+});
