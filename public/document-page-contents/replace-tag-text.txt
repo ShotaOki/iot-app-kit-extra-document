@@ -3,7 +3,7 @@ ${0}.toText?.create({
     content: "Time",
 })
 .onAnimating((text) => {
-    (text as any).set({
+    text.set({
         content: new Date(new Date().getTime() + 9 * 60 * 60 * 1000)
             .toISOString()
             .split(".")[0],
