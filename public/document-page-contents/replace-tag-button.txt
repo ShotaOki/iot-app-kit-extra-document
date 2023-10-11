@@ -3,7 +3,7 @@ ${0}.toButton?.create({
     content: "Close",
     width: 0.7,
     height: 0.24,
-    stateStyle: extra.ButtonStyle.Standard,
+    stateStyle: ButtonStyle.Standard,
 })
 .onClickEvent(() => {
 });
