@@ -46,6 +46,7 @@ jobs:
         run: |
           cp -r ../../../main/public/document-page-contents ./public/document-page-contents
           cp ../../../main/public/test-content.json ./public/test-content.json
+          cp ../../../main/public/demo-content.json ./public/demo-content.json
           cp ../../../main/src/App.tsx ./src/App.tsx
       - name: Copy from URL
         working-directory: iot-app-kit-extra/examples/typescript-simple/public
