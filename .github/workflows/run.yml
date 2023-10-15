@@ -42,11 +42,11 @@ jobs:
           sed -i 's/"@iak-extra\/scene-composer-extra.*$/"@iak-extra\/scene-composer-extra": "file:..\/..\/package\/scene_composer_extra",/g' package.json
           npm install
       - name: Build Mode to Development
-        working-directory: iot-app-kit-extra/examples/typescript-simple/node_modules/react-scripts/scripts/build.js
+        working-directory: iot-app-kit-extra/examples/typescript-simple/node_modules/react-scripts/scripts
         run: |
           sed -i "s/_ENV = 'production'/_ENV = 'development'/g" build.js
       - name: Build Mode to Development App Reqired
-        working-directory: iot-app-kit-extra/examples/typescript-simple/node_modules/react-app-rewired/scripts/build.js
+        working-directory: iot-app-kit-extra/examples/typescript-simple/node_modules/react-app-rewired/scripts
         run: |
           sed -i "s/_ENV = 'production'/_ENV = 'development'/g" build.js
       - name: Copy From main
