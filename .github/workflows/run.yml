@@ -34,13 +34,13 @@ jobs:
       - name: Build package
         working-directory: iot-app-kit-extra/src/scene_composer_extra
         run: |
-          npm install --legacy-peer-deps
+          npm install
           npm run build:wsl
       - name: Dependency to current repository
         working-directory: iot-app-kit-extra/examples/typescript-simple
         run: |
           sed -i 's/"@iak-extra\/scene-composer-extra.*$/"@iak-extra\/scene-composer-extra": "file:..\/..\/package\/scene_composer_extra",/g' package.json
-          npm install --legacy-peer-deps
+          npm install
       - name: Copy From main
         working-directory: iot-app-kit-extra/examples/typescript-simple
         run: |
