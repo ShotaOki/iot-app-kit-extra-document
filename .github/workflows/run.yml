@@ -60,6 +60,7 @@ jobs:
           npm run build
         env:
           PUBLIC_URL: /iot-app-kit-extra-document
+          NODE_OPTIONS: --max-old-space-size=4096
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
