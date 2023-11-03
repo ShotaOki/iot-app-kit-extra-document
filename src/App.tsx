@@ -27,15 +27,16 @@ function DynamicContents(parameter: { content: string }) {
   // 関数をevalで再定義する
   // eslint-disable-next-line no-eval
   eval(`
-    fc = (replaceTag) => {
-      ${parameter.content.replace("${0}", "return replaceTag")}
+    fc = (r) => {
+      console.log(r);
+      ${parameter.content.replace("${0}", "return r")}
     }
   `);
 
   /** TwinMakerのタグを、再定義した関数で上書きする */
   // eslint-disable-next-line no-eval
   const controller = useOverrideTags({
-    Target: (replaceTag: any) => fc(replaceTag),
+    Target: fc,
   });
 
   return (
