@@ -35,44 +35,35 @@ jobs:
         working-directory: iot-app-kit-extra/src/scene_composer_extra
         run: |
           npm install
-          npm run build:wsl
+          npm run build:local
       - name: Dependency to current repository
-        working-directory: iot-app-kit-extra/examples/typescript-simple
+        working-directory: iot-app-kit-extra/examples/typescript-vite-simple
         run: |
-          sed -i 's/"@iak-extra\/scene-composer-extra.*$/"@iak-extra\/scene-composer-extra": "file:..\/..\/package\/scene_composer_extra",/g' package.json
+          sed -i 's/"@iak-extra\/scene-composer-extra.*$/"@iak-extra\/scene-composer-extra": "file:..\/..\/src\/scene_composer_extra",/g' package.json
           npm install
-      - name: Build Mode to Development
-        working-directory: iot-app-kit-extra/examples/typescript-simple/node_modules/react-scripts/scripts
-        run: |
-          sed -i "s/_ENV = 'production'/_ENV = 'development'/g" build.js
-      - name: Build Mode to Development App Reqired
-        working-directory: iot-app-kit-extra/examples/typescript-simple/node_modules/react-app-rewired/scripts
-        run: |
-          sed -i "s/_ENV = 'production'/_ENV = 'development'/g" build.js
       - name: Copy From main
-        working-directory: iot-app-kit-extra/examples/typescript-simple
+        working-directory: iot-app-kit-extra/examples/typescript-vite-simple
         run: |
           cp -r ../../../main/public/document-page-contents ./public/document-page-contents
           cp ../../../main/public/test-content.json ./public/test-content.json
           cp ../../../main/public/demo-content.json ./public/demo-content.json
           cp ../../../main/src/App.tsx ./src/App.tsx
       - name: Copy from URL
-        working-directory: iot-app-kit-extra/examples/typescript-simple/public
+        working-directory: iot-app-kit-extra/examples/typescript-vite-simple/public
         run: |
           curl https://pub-5015c5eb71ab421cbc461442eab0dd68.r2.dev/resource.tar.gz -o resource.tar.gz
           tar -zxvf resource.tar.gz
           rm resource.tar.gz
       - name: Build Website
-        working-directory: iot-app-kit-extra/examples/typescript-simple
+        working-directory: iot-app-kit-extra/examples/typescript-vite-simple
         run: |
           npm run build
         env:
           PUBLIC_URL: /iot-app-kit-extra-document
-          NODE_OPTIONS: --max-old-space-size=4096
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: "iot-app-kit-extra/examples/typescript-simple/build"
+          path: "iot-app-kit-extra/examples/typescript-vite-simple/build"
 
   deploy:
     environment:
