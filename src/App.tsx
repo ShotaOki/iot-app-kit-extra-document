@@ -68,20 +68,26 @@ function DemoContents() {
         }),
     // TwinMakerのタグをボタンに置き換える
     兎田ぺこら: (replaceTag) =>
-      replaceTag.toMMD
-        ?.create({
-          angle: 0,
-          scale: 0.08,
-          pmxPath:
-            "/iot-app-kit-extra-document/mmd/UsadaPekora/PMX/UsadaPekora.pmx",
-          useMotionList: {
-            dance:
-              "/iot-app-kit-extra-document/mmd/Alicia/MMD Motion/2分ループステップ1.vmd",
-          },
-        })
-        .onStateChangeEvent((mesh, model, state) => {
-          return ["dance"];
-        }),
+      replaceTag.withAsyncLoadContents({
+        loader: {
+          position: { y: 0.6 },
+        },
+        contents: (replace) =>
+          replace.toMMD
+            ?.create({
+              angle: 0,
+              scale: 0.08,
+              pmxPath:
+                "/iot-app-kit-extra-document/mmd/UsadaPekora/PMX/UsadaPekora.pmx",
+              useMotionList: {
+                dance:
+                  "/iot-app-kit-extra-document/mmd/Alicia/MMD Motion/2分ループステップ1.vmd",
+              },
+            })
+            .onStateChangeEvent((mesh, model, state) => {
+              return ["dance"];
+            }),
+      }),
     // TwinMakerのタグをボタンに置き換える
     壁の時計: (replaceTag) =>
       replaceTag.toText
