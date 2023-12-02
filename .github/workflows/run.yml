@@ -1,9 +1,25 @@
 name: create-deployments
 on:
-  push:
-    branches: ["main"]
-
   workflow_dispatch:
+    inputs:
+      iot_appkit_version:
+        description: "@iot-appkit version"
+        required: true
+        type: string
+      update_iot_appkit_version:
+        description: "update @iot-appkit version"
+        required: true
+        type: boolean
+  workflow_call:
+    inputs:
+      iot_appkit_version:
+        description: "@iot-appkit version"
+        required: true
+        type: string
+      update_iot_appkit_version:
+        description: "update @iot-appkit version"
+        required: true
+        type: boolean
 permissions:
   contents: write
   pages: write
@@ -31,6 +47,21 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "18.17.1"
+      - name: Rewrite Version
+        if: ${{ inputs.update_iot_appkit_version }}
+        working-directory: iot-app-kit-extra/utility
+        run: |
+          node dependency-control.js replace version-override.json "@iot-app-kit/components=^${LIBRARY_VERSION}"
+          node dependency-control.js replace version-override.json "@iot-app-kit/react-components=^${LIBRARY_VERSION}"
+          node dependency-control.js replace version-override.json "@iot-app-kit/scene-composer=^${LIBRARY_VERSION}"
+          node dependency-control.js replace version-override.json "@iot-app-kit/source-iottwinmaker=^${LIBRARY_VERSION}"
+        env:
+          LIBRARY_VERSION: ${{ inputs.iot_appkit_version }}
+      - name: Update Project Dependency
+        if: ${{ inputs.update_iot_appkit_version }}
+        working-directory: iot-app-kit-extra
+        run: |
+          node utility/dependency-control.js apply src/scene_composer_extra/package.json utility/version-override.json
       - name: Build package
         working-directory: iot-app-kit-extra/src/scene_composer_extra
         run: |
