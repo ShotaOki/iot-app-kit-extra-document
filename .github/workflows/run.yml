@@ -27,6 +27,9 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: true
+env:
+  USE_NODE_VERSION: "18.17.1"
+  USE_REPOSITORY: "ShotaOki/iot-app-kit-extra"
 jobs:
   build:
     environment:
@@ -41,12 +44,12 @@ jobs:
       - name: Checkout Target repository
         uses: actions/checkout@v4
         with:
-          repository: ShotaOki/iot-app-kit-extra
+          repository: ${{ env.USE_REPOSITORY }}
           path: iot-app-kit-extra
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "18.17.1"
+          node-version: ${{ env.USE_NODE_VERSION }}
       - name: Rewrite Version
         if: ${{ inputs.update_iot_appkit_version }}
         working-directory: iot-app-kit-extra/utility
@@ -79,7 +82,20 @@ jobs:
           cp -r ../../../main/public/document-page-contents ./public/document-page-contents
           cp ../../../main/public/test-content.json ./public/test-content.json
           cp ../../../main/public/demo-content.json ./public/demo-content.json
+          cp package.json ./public/package.json
           cp ../../../main/src/App.tsx ./src/App.tsx
+      - name: Publish build info
+        working-directory: iot-app-kit-extra/utility
+        run: |
+          node dependency-control.js append ${TARGET_FILE} "build-datetime=`date "+%Y-%m-%d %H:%M:%S"`"
+          node dependency-control.js append ${TARGET_FILE} "source-hash=`git show --format='%H' --no-patch`"
+          node dependency-control.js append ${TARGET_FILE} "project=typescript-vite-simple"
+          node dependency-control.js append ${TARGET_FILE} "repository=${{ env.USE_REPOSITORY }}"
+          node dependency-control.js append ${TARGET_FILE} "branch=main"
+          node dependency-control.js append ${TARGET_FILE} "node-version=${NODE_VERSION}"
+        env:
+          TARGET_FILE: ../examples/typescript-vite-simple/public/package.json
+          NODE_VERSION: ${{ env.USE_NODE_VERSION }}
       - name: Copy from URL
         working-directory: iot-app-kit-extra/examples/typescript-vite-simple/public
         run: |
